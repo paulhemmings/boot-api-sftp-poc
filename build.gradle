@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
+}
+
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+mainClassName = 'camelpoc.Application'
+
+bootJar {
+    baseName = 'boot-api-sftp-poc'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext['springboot.version'] = '2.0.6.RELEASE'
+ext['camel.version'] = '2.22.1'
+
+dependencies {
+
+    // spring boot
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:property('springboot.version')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version:property('springboot.version')
+
+    // camel
+    compile group: 'org.apache.camel', name: 'camel-core', version:property('camel.version')
+    compile group: 'org.apache.camel', name: 'camel-spring-boot-starter', version:property('camel.version')
+    compile group: 'org.apache.camel', name: 'camel-servlet-starter', version:property('camel.version')
+
+    // spring boot test
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

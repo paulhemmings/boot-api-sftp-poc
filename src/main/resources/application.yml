@@ -1,0 +1,3 @@
+camelpoc:
+  api:
+    path: '/camel'
