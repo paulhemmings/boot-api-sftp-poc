@@ -2,7 +2,6 @@ package camelpoc.components;
 
 import camelpoc.domain.FeedItem;
 import camelpoc.domain.FeedResults;
-import camelpoc.domain.ResultsTransformer;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;

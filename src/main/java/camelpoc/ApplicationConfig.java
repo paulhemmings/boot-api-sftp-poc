@@ -1,7 +1,6 @@
 package camelpoc;
 
 import camelpoc.components.CamelApiRouter;
-import camelpoc.domain.ResultsTransformer;
 import org.apache.camel.CamelContext;
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -32,11 +31,6 @@ public class ApplicationConfig {
     camelContext.addRoutes(apiRouter);
     camelContext.start();
     return camelContext;
-  }
-
-  @Bean
-  public ResultsTransformer transformer() {
-    return new ResultsTransformer();
   }
 
   @Bean
