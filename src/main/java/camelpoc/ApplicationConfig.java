@@ -1,6 +1,7 @@
 package camelpoc;
 
 import camelpoc.components.CamelApiRouter;
+import camelpoc.components.CamelFtpClientRouter;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,14 @@ public class ApplicationConfig {
   @Autowired
   CamelApiRouter apiRouter;
 
+  @Autowired
+  CamelFtpClientRouter ftpClientRouter;
+
   @Bean
   public CamelContext camelContext() throws Exception {
     CamelContext camelContext = new DefaultCamelContext();
     camelContext.addRoutes(apiRouter);
+    camelContext.addRoutes(ftpClientRouter);
     camelContext.start();
     return camelContext;
   }

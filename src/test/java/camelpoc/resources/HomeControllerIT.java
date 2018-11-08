@@ -1,5 +1,7 @@
 package camelpoc.resources;
 
+import camelpoc.utilities.FtpTestUtility;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,12 +26,20 @@ public class HomeControllerIT {
 
     private URL base;
 
+    private FtpTestUtility ftpTestUtility = new FtpTestUtility();
+
     @Autowired
     private TestRestTemplate template;
 
     @Before
     public void setUp() throws Exception {
         this.base = new URL("http://localhost:" + port + "/");
+        this.ftpTestUtility.setUp();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        this.ftpTestUtility.tearDown();
     }
 
     @Test

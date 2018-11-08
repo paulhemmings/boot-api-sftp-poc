@@ -1,5 +1,8 @@
 package camelpoc.resources;
 
+import camelpoc.utilities.FtpTestUtility;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,18 @@ public class HomeControllerTest {
 
     @Autowired
     private MockMvc mvc;
+
+    private FtpTestUtility ftpTestUtility = new FtpTestUtility();
+
+    @Before
+    public void setUp() throws Exception {
+        this.ftpTestUtility.setUp();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        this.ftpTestUtility.tearDown();
+    }
 
     @Test
     public void getHello() throws Exception {
