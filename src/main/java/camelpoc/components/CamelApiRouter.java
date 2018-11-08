@@ -3,26 +3,18 @@ package camelpoc.components;
 import camelpoc.domain.FeedItem;
 import camelpoc.domain.FeedResults;
 import camelpoc.domain.ResultsTransformer;
-import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.dataformat.bindy.csv.BindyCsvDataFormat;
-import org.apache.camel.impl.DefaultCamelContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CamelApiRouter extends RouteBuilder {
 
-  private CamelContext context;
-
   @Autowired
   ResultsTransformer transformer;
-
-  public CamelApiRouter() {
-    this.context = new DefaultCamelContext();
-  }
 
   @Override
   public void configure() {

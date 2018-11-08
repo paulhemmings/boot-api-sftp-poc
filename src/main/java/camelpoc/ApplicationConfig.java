@@ -1,7 +1,11 @@
 package camelpoc;
 
+import camelpoc.components.CamelApiRouter;
 import camelpoc.domain.ResultsTransformer;
+import org.apache.camel.CamelContext;
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
+import org.apache.camel.impl.DefaultCamelContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -18,6 +22,17 @@ public class ApplicationConfig {
 
   @Value("${camelpoc.api.path}")
   String contextPath;
+
+  @Autowired
+  CamelApiRouter apiRouter;
+
+  @Bean
+  public CamelContext camelContext() throws Exception {
+    CamelContext camelContext = new DefaultCamelContext();
+    camelContext.addRoutes(apiRouter);
+    camelContext.start();
+    return camelContext;
+  }
 
   @Bean
   public ResultsTransformer transformer() {

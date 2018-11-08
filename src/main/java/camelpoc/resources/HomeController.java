@@ -1,15 +1,15 @@
 package camelpoc.resources;
 
+import org.apache.camel.CamelContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import camelpoc.components.CamelApiRouter;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
 
     @Autowired
-    private CamelApiRouter router;
+    private CamelContext camelContext;
 
     @RequestMapping("/")
     public String index() {
@@ -18,6 +18,11 @@ public class HomeController {
 
     @RequestMapping("/fire")
     public String fire() {
-        return "Do something!";
+        try {
+            this.camelContext.createProducerTemplate().sendBody("direct:start", "hello");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Complete";
     }
 }
