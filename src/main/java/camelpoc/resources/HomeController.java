@@ -11,11 +11,6 @@ public class HomeController {
     @Autowired
     private CamelContext camelContext;
 
-    @RequestMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
-
     @RequestMapping("/fire")
     public String fire() {
         try {

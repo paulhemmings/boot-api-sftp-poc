@@ -6,14 +6,10 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.dataformat.bindy.csv.BindyCsvDataFormat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CamelApiRouter extends RouteBuilder {
-
-  @Autowired
-  ResultsTransformer transformer;
 
   @Override
   public void configure() {
@@ -33,8 +29,7 @@ public class CamelApiRouter extends RouteBuilder {
   }
 
   BindyCsvDataFormat bindy() {
-    BindyCsvDataFormat csvDataFormat = new BindyCsvDataFormat(FeedItem.class);
-    return csvDataFormat;
+    return new BindyCsvDataFormat(FeedItem.class);
   }
 
 
