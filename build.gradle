@@ -43,4 +43,6 @@ dependencies {
 
     // spring boot test
     testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    testCompile group: 'org.apache.camel', name: 'camel-test', version:property('camel.version')
 }
