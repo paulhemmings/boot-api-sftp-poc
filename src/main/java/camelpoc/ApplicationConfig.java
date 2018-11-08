@@ -1,5 +1,6 @@
 package camelpoc;
 
+import camelpoc.domain.ResultsTransformer;
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,11 @@ public class ApplicationConfig {
 
   @Value("${camelpoc.api.path}")
   String contextPath;
+
+  @Bean
+  public ResultsTransformer transformer() {
+    return new ResultsTransformer();
+  }
 
   @Bean
   ServletRegistrationBean servletRegistrationBean() {
